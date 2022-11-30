@@ -7,9 +7,10 @@
           <v-col cols="3" v-for="recepta in receptes" :key="recepta.idDrink">
             <v-img :src="recepta.strDrinkThumb">
               <v-container style="height: 100%" fill-height>
-                <v-row style="height: 100%" >
-                  <v-col align="end" justify="end">
+                <v-row style="height: 100%" align="end" justify="end" >
+                  <v-col align="end">
                     <h3>{{recepta.strDrink}}</h3>
+                    <v4>{{recepta.strCategory}}</v4>
                   </v-col>
                 </v-row>
               </v-container>
@@ -17,12 +18,18 @@
           </v-col>
         </v-row>
       </v-col>
+      <v-col>
+        <pre>
+          {{receptes}}
+        </pre>
+      </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
 import {receptes} from '@/dades/receptes'
+
 export default{
   mounted(){
     console.log(receptes)
