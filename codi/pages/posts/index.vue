@@ -1,35 +1,56 @@
 <template>
     <v-container>
         <v-row>
-            <v-col cols="12"></v-col>
-            <v-col cols="12" v-for="article in postsDeVue">
-                <h2>{{article.title}} ({{article.reactions}} like)</h2>
-                <nuxt-link :to="'/posts/'+ article.id">Veure article</nuxt-link>
-                <pre>
-                    {{article}}
-                </pre>
+            <v-col cols="12">
+                <v-text-field
+                v-model="textDeCerca"
+                placeholder="Busca articles..."
+                ></v-text-field>
+            </v-col >
+            <v-col cols="12" v-for="article in postsFiltrats">
+                <h1>{{ article.title }} ({{article.reactions}} likes) </h1>
+                <nuxt-link :to="'/posts/'+article.id">Veure article</nuxt-link>
             </v-col>
         </v-row>
+
+        <v-row>
+            <v-col cols="6">
+                    {{postsFiltrats}}
+            </v-col>
+            <v-col cols="6">
+                    {{postsDeVue}}
+            </v-col>
+        </v-row>
+
     </v-container>
 </template>
 
-
 <script>
 import posts from "@/dades/posts.js"
-export default{
+
+
+export default {
     mounted(){
-       console.log(posts)
-       this.postsDeVue = posts
+        this.postsDeVue= posts
     },
     data(){
-        return{
-            postsDeVue:[]
+        return {
+            postsDeVue:[],
+            textDeCerca:""
         }
     },
-    methods:{
-        enllacIdArticle(){
-
-        }
+    computed: {
+            postsFiltrats(){
+                let self = this
+           let filtered= this.postsDeVue.filter((el)=>{
+                let titol = el.title
+                if(titol.includes(self.textDeCerca)){
+                    return true
+                }
+                    
+                })
+                return filtered
+            }
     }
 }
 </script>
