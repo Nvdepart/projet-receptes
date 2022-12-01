@@ -10,7 +10,7 @@
                 <v-row style="height: 100%" align="end" justify="end" >
                   <v-col align="end">
                     <h3>{{recepta.strDrink}}</h3>
-                    <v4>{{recepta.strCategory}}</v4>
+                    <h4>{{recepta.strCategory}}</h4>
                   </v-col>
                 </v-row>
               </v-container>
