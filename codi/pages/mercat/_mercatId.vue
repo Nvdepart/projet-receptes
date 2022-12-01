@@ -2,12 +2,25 @@
     <v-container>
         <v-row>
             <v-col cols="12" md="6">
-                <h1>{{mercat.mercatId}}</h1>
+                <h1>{{mercatVue.name}}</h1>
+                <v-img :src="mercatVue.image_data.image" style="height:20vh"></v-img>
             </v-col>
+            <div>
+                <enllaç v-for="web in mercatVue.values"
+                :textEsquerre="web.attrbute_name"
+                :textDreta="web.url_visible_value"
+                :url="web.value"
+                :tipus="web.attribute_type"
+                ></enllaç>
+            </div>
             <v-col cols="12" md="6">
-                <pre>
-                    {{mercat}}
-                </pre>
+               <a 
+               v-if="mercatVue"
+               target="_blank"
+               :href="mercatVue.values[0].url_value"
+               >
+                {{mercatVue.values[0].url_visible_value}}
+               </a>
             </v-col>
         </v-row>
 
@@ -15,23 +28,18 @@
 </template>
 
 <script>
-import {llistaMercats} from '@/dades/mercats.js'
+import {buscarMercat} from '@/dades/mercats.js'
 
 export default {
-        mounted(){
-            let mercatId = this.$route.params.register_id
-            llistaMercats.forEach(element => {
-                if(mercatId==element.mercatId){
-                // Hem trobat la recepta
-                // self.recepta = recepta
-                this.mercat = element
-            }
-            });
 
+        created(){
+            let mercat = 
+            buscarMercat(this.$route.params.mercatId)
+            this.mercatVue = mercat
         },
     data(){
             return {
-                mercat:[]
+                mercatVue:{}
             }
         }
 

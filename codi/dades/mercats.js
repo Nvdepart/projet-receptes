@@ -44238,7 +44238,12 @@ let mercats =[
   ]
 export let llistaMercats = mercats
 export let buscarMercat=(mercatId)=>{
-return false
+    let mercat = mercats.find((el)=>{
+      if(mercatId==el.register_id){
+        return true
+      }
+    })
+    return mercat
 }
 
 export let numeroDeMercats = mercats.length

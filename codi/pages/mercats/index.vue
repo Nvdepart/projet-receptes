@@ -11,6 +11,7 @@
                                   <v-col align="end">
                                     <h3>{{mercat.name}}</h3>
                                     <h4>{{mercat.status_name}}</h4>
+                                    <nuxt-link :to="'/mercat/'+mercat.register_id">Veure mercat</nuxt-link>
                                   </v-col>
                                 </v-row>
                               </v-container>
@@ -37,8 +38,12 @@ export default{
                     mercats:[],
                     numeros:""
                 }
+            },
+            watch:{
+            mercatVue(){
+                console.log("Ha canviat",this.mercatVue)
+                }
             }
-
 }
 
 
