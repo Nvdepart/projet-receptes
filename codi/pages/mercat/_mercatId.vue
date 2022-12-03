@@ -7,7 +7,7 @@
             </v-col>
             <div>
                 <enllaç v-for="web in mercatVue.values"
-                :textEsquerre="web.attrbute_name"
+                :textEsquerre="web.attribute_name"
                 :textDreta="web.url_visible_value"
                 :url="web.value"
                 :tipus="web.attribute_type"
